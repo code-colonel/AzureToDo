@@ -27,13 +27,12 @@ namespace DotNetCoreSqlDb
             // Add framework services.
             services.AddMvc();
 
-            if(Environment.GetEnvironmentVariable(“ASPNETCORE_ENVIRONMENT”) == “Production”)
+            if(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
                 services.AddDbContext<MyDatabaseContext>(options =>
-                                                         options.UseSqlServer(Configuration.
-                GetConnectionString(“MyDbConnection”)));
+                                                         options.UseSqlServer(Configuration.GetConnectionString("MyDbConnection")));
             else
                 services.AddDbContext<MyDatabaseContext>(options =>
-                                                         options.UseSqlite(“Data Source=localdatabase.db”));
+                                                         options.UseSqlite("Data Source=localdatabase.db"));
                 // Automatically perform database migration
                 services.BuildServiceProvider()
                         .GetService<MyDatabaseContext>()
